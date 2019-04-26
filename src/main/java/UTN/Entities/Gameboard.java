@@ -1,9 +1,8 @@
 package UTN.Entities;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import UTN.Models.Connector;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Gameboard {
@@ -15,8 +14,8 @@ public class Gameboard {
         private String winner;
 
         public Gameboard (){
-
-            this.word = "vieja";
+            List<String> words = new Connector().getWords();
+            this.word = words.get( new Random().nextInt(words.size()));
             this.word2 = this.word.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
             this.lettersToGuess = this.word.chars().mapToObj(c -> (char) c).collect(Collectors.toSet());
 
@@ -29,7 +28,9 @@ public class Gameboard {
         public String getWord(){
             return this.word;
         }
+
         public void setWinner(String wn) {this.winner = wn; }
+
         public String getWinner(){return this.winner;}
 
         public boolean guessLetter (Character x) {
@@ -62,6 +63,10 @@ public class Gameboard {
                 }
             });
 
+        }
+
+        public Integer saveResults(){
+            return new Connector().save( getWord(), getWinner() );
         }
 
 }

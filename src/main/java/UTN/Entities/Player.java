@@ -65,6 +65,7 @@ public class Player implements Runnable{
         if(game.gameOver()){
             game.setWinner(this.getName());
             System.out.println("------ GANEEEE! ------");
+            game.saveResults();
         }
 
         if(this.chances==0) {
@@ -77,7 +78,7 @@ public class Player implements Runnable{
         notifyAll();
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(500);
         }catch (InterruptedException e) {
             e.printStackTrace();
         }

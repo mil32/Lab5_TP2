@@ -8,7 +8,6 @@ public class App
     public static void main( String[] args )
     {
 
-
         Player.setGame(new Gameboard());
         System.out.println("-- WORD : "+Player.getGame().getWord().toUpperCase() +" --");
 
